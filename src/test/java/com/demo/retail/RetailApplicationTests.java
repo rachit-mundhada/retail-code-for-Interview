@@ -10,4 +10,6 @@ class RetailApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void checkIfAmtIsNull(){}
 }

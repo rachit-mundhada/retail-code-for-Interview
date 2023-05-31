@@ -29,17 +29,19 @@ public class RetailsServiceImpl implements RetailsService {
             BigDecimal amt = new BigDecimal(Integer.parseInt(bill.getBillAmount()));
 
             if (nonNull(bill.getIsEmployee()) && bill.getIsEmployee().equalsIgnoreCase("true")) {
-                payableAmountResponse.setNetPayableAmount(new BigDecimal(amt.intValue() * 0.30));
+                BigDecimal intermediateAmt=new BigDecimal(amt.intValue() * 0.30);
+                payableAmountResponse.setNetPayableAmount(new BigDecimal(bill.getBillAmount()).subtract(intermediateAmt));
                 payableAmountResponse.setResponseMessage("Success");
             }
             else if (nonNull(bill.getIsAffiliate()) && bill.getIsAffiliate().equalsIgnoreCase("true")) {
-                payableAmountResponse.setNetPayableAmount(new BigDecimal(amt.intValue() * 0.10));
+                BigDecimal intermediateAmt=new BigDecimal(amt.intValue() * 0.10);
+                payableAmountResponse.setNetPayableAmount(new BigDecimal(bill.getBillAmount()).subtract(intermediateAmt));
                 payableAmountResponse.setResponseMessage("Success");
 
             }
             else if (nonNull(bill.getCustomerSince()) && Integer.parseInt(bill.getCustomerSince()) >= 2) {
-
-                payableAmountResponse.setNetPayableAmount(new BigDecimal(amt.intValue() * 0.05));
+                BigDecimal intermediateAmt=new BigDecimal(amt.intValue() * 0.05);
+                payableAmountResponse.setNetPayableAmount(new BigDecimal(bill.getBillAmount()).subtract(intermediateAmt));
                 payableAmountResponse.setResponseMessage("Success");
 
             } else {
