@@ -53,7 +53,7 @@ public class RetailsServiceImpl implements RetailsService {
                     //amt.divide(new BigDecimal(100)).intValue()*5;
                 log.info("Bill discount applicable for every 100 rs 5 rs is minus ");
                 BigDecimal intermediateAmt= new BigDecimal(amt.divide(new BigDecimal(100)).intValue());
-                PayableAmountResponse.builder()
+                return PayableAmountResponse.builder()
                         .netPayableAmount(new BigDecimal(bill.getBillAmount()).subtract(intermediateAmt.multiply(new BigDecimal(5))))
                         .responseMessage("Success")
                         .build();
